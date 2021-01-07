@@ -7,6 +7,10 @@ const controller = require("../controller/index");
 const { checkJwt } = require('../utils/index');
 
 // all routes mapped against /api
+router.get('/status', (req, res) => {
+    return res.json(`API online`);
+});
+
 router.route('/userData')
       .post(checkJwt, controller.userData);
 
