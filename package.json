@@ -4,11 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "node app.js",
-    "start:dev": "node app.js",
+    "start": "node app.js",
     "install": "npm install",
-    "build": "npm run build",
     "heroku-postbuild": "npm run build",
     "test": "env PORT=3002 mocha"
   },
