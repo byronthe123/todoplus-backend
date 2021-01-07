@@ -36,22 +36,18 @@ module.exports = {
     //     algorithms: ["RS256"]
     // })
 
-    checkJwt: (req, res, next) => {
-        if (NODE_ENV === 'dev') {
-            return next();
-        } else {
-            return jwt({
-                secret: jwksRsa.expressJwtSecret({
-                    cache: true,
-                    rateLimit: true,
-                    jwksRequestsPerMinute: 5,
-                    jwksUri: JWKS_URI
+    checkJwt: NODE_ENV === 'dev' ?
+                (req, res, next) => next() :
+                jwt({
+                    secret: jwksRsa.expressJwtSecret({
+                        cache: true,
+                        rateLimit: true,
+                        jwksRequestsPerMinute: 5,
+                        jwksUri: JWKS_URI
+                    }),
+                  
+                    audience: JWT_AUDIENCE,
+                    issuer: JWT_ISSUER,
+                    algorithms: ["RS256"]
                 }),
-            
-                audience: JWT_AUDIENCE,
-                issuer: JWT_ISSUER,
-                algorithms: ["RS256"]
-            })
-        }   
-    }
 }
