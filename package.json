@@ -5,8 +5,6 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "install": "npm install",
-    "heroku-postbuild": "npm run build",
     "test": "env PORT=3002 mocha"
   },
   "devDependencies": {
