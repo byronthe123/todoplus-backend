@@ -28,7 +28,7 @@
     "moment-timezone": "^0.5.23",
     "mongoose": "^5.5.11",
     "morgan": "^1.9.1",
-    "node-notifier": "^5.4.0",
+    "node-notifier": "^5.4.3",
     "path": "^0.12.7",
     "terser": "^3.14.1",
     "yup": "^0.29.3"

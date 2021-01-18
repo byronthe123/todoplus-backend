@@ -1,6 +1,7 @@
 const db = require('../models/index');
 const moment =  require('moment');
 const yup = require('yup');
+const notifier = require('node-notifier');
 const { User, Project, ProductivityRecord, Attachment } = db;
 const utils  = require('../utils/index');
 const { asyncHandler } = utils;
@@ -359,6 +360,10 @@ module.exports = {
         if (validData) {
             const { productivityRecordId, task } = req.body.data;
             const updated = await ProductivityRecord.addEntry(productivityRecordId, task);
+            notifier.notify({
+                'title': 'To Do Plus',
+                'message': 'You completed a productivity session!'
+            });
             return res.json(updated);
         };
     }),
