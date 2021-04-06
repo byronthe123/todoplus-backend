@@ -370,17 +370,7 @@ module.exports = {
             return res.json(updated);
         };
     }),
-
-    // createProductivityEntry: asyncHandler(async(req, res) => {
-    //     notifier.notify({
-    //         title: "To Do Plus",
-    //         message: "You completed a productivity session!",
-    //         wait: true,
-    //         icon: path.join(__dirname, '../icon.png'),
-    //     });
-    //     return res.sendStatus(200);
-    // }),
-
+    
     createTaskNote: asyncHandler(async(req, res) => {
         const dataSchema = yup.object().shape({
             projectId: yup.string().required(),
