@@ -2,6 +2,7 @@ const db = require('../models/index');
 const moment =  require('moment');
 const yup = require('yup');
 const notifier = require('node-notifier');
+const path = require('path');
 const { User, Project, ProductivityRecord, Attachment } = db;
 const utils  = require('../utils/index');
 const { asyncHandler } = utils;
@@ -361,12 +362,24 @@ module.exports = {
             const { productivityRecordId, task } = req.body.data;
             const updated = await ProductivityRecord.addEntry(productivityRecordId, task);
             notifier.notify({
-                'title': 'To Do Plus',
-                'message': 'You completed a productivity session!'
+                title: "To Do Plus",
+                message: "You completed a productivity session!",
+                wait: true,
+                icon: path.join(__dirname, '../icon.png'),
             });
             return res.json(updated);
         };
     }),
+
+    // createProductivityEntry: asyncHandler(async(req, res) => {
+    //     notifier.notify({
+    //         title: "To Do Plus",
+    //         message: "You completed a productivity session!",
+    //         wait: true,
+    //         icon: path.join(__dirname, '../icon.png'),
+    //     });
+    //     return res.sendStatus(200);
+    // }),
 
     createTaskNote: asyncHandler(async(req, res) => {
         const dataSchema = yup.object().shape({
